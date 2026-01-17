@@ -30,8 +30,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 className="absolute inset-0 flex items-center justify-center text-center"
             >
                 <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white mix-blend-difference">
-                    Rana Pratap Singh.<br />
-                    <span className="text-3xl md:text-4xl font-light text-gray-300 block mt-4">Creative Developer.</span>
+                    Rana Pratap Singh.
                 </h1>
             </motion.div>
 

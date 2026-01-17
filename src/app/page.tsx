@@ -5,6 +5,7 @@ import ScrollyCanvas from "@/components/ScrollyCanvas";
 import Overlay from "@/components/Overlay";
 import Projects from "@/components/Projects";
 import Navbar from "@/components/Navbar";
+import About from "@/components/About";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,17 +23,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* About Section (Placeholder) */}
-      <section id="about" className="min-h-screen flex items-center justify-center bg-[#121212] py-20">
-        <div className="max-w-4xl px-6 text-center">
-          <h2 className="text-4xl font-bold text-white mb-8">About Me</h2>
-          <p className="text-gray-400 text-lg leading-relaxed">
-            I am a creative developer passionate about building immersive digital experiences.
-            With a background in both design and engineering, I strive to bridge the gap
-            between aesthetics and functionality.
-          </p>
-        </div>
-      </section>
+      <About />
 
       {/* Projects Section */}
       <div id="projects">
