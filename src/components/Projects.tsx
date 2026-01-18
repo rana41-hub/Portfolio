@@ -1,37 +1,52 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
+import CaseStudyModal, { ProjectData } from "./CaseStudyModal";
 
-const projects = [
+const projects: ProjectData[] = [
     {
         title: "Ecosync Nexus",
         category: "Web Application",
         year: "2025",
         description: "Energy monitoring and management system that checks energy consumption stats and gives AI insights to reduce the energy consumption.",
+        images: ["https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"],
+        liveUrl: "https://sustainovation-2025.vercel.app/"
     },
     {
         title: "Washington Guardian",
         category: "Web Application",
         year: "2024",
         description: "AI-powered health monitoring platform that monitors real-time health data, AI insights, and gives location-based emergency reporting.",
+        images: ["https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"],
+        liveUrl: "https://washinton-guardian-sah.vercel.app/"
     },
     {
         title: "Echo Earth",
         category: "Web Application",
         year: "2024",
         description: "AI-powered platform that uses real-time climate data, voice synthesis, and storytelling to personify the Earth.",
+        images: ["https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop"],
+        liveUrl: "https://sensational-sherbet-67a5e1.netlify.app/"
     },
-    {
-        title: "Manipal Pocket-Quest",
-        category: "Web Application",
-        year: "2024",
-        description: "Location-based health intelligence platform that transforms outdoor activities into intelligent health experiences..",
-    }
 ];
 
 export default function Projects() {
+    const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = (project: ProjectData) => {
+        setSelectedProject(project);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => setSelectedProject(null), 300); // Clear data after animation
+    };
+
     return (
-        <section className="relative z-20 min-h-screen py-32 px-6 md:px-20 overflow-hidden">
+        <section className="relative z-20 min-h-screen py-32 px-6 md:px-20 overflow-hidden" id="projects">
 
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-[#0A0A0A]" /> {/* Slightly darker base */}
@@ -122,7 +137,10 @@ export default function Projects() {
                             </div>
 
                             <div className="flex justify-end">
-                                <button className="px-6 py-2 rounded-full bg-white text-black font-sans font-medium opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 leading-[1.2]">
+                                <button
+                                    onClick={() => handleOpenModal(project)}
+                                    className="px-6 py-2 rounded-full bg-white text-black font-sans font-medium opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 leading-[1.2]"
+                                >
                                     View Case Study
                                 </button>
                             </div>
@@ -130,6 +148,11 @@ export default function Projects() {
                     ))}
                 </div>
             </div>
-        </section>
+            <CaseStudyModal
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                project={selectedProject}
+            />
+        </section >
     );
 }
