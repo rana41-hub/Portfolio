@@ -3,11 +3,11 @@
 import { motion, useMotionValue, useTransform, useSpring, MotionValue } from "framer-motion";
 import { useRef, useEffect } from "react";
 
-// --- Proximity Character Component ---
+
 const ProximityChar = ({ char, mouseX, mouseY, className }: { char: string, mouseX: MotionValue<number>, mouseY: MotionValue<number>, className: string }) => {
     const ref = useRef<HTMLSpanElement>(null);
 
-    // Calculate distance from mouse to center of this character
+
     const distance: MotionValue<number> = useTransform([mouseX, mouseY], ([x, y]: number[]) => {
         if (!ref.current) return 0;
         const rect = ref.current.getBoundingClientRect();
@@ -16,12 +16,11 @@ const ProximityChar = ({ char, mouseX, mouseY, className }: { char: string, mous
         return Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
     });
 
-    // Map distance to effects
-    // Decreased scale range to prevent overlap (1.15 max)
+
     const scaleRaw: MotionValue<number> = useTransform(distance, [0, 150], [1.15, 1]);
     const yRaw: MotionValue<number> = useTransform(distance, [0, 150], [-5, 0]);
 
-    // Smooth physics
+
     const scale = useSpring(scaleRaw, { stiffness: 50, damping: 15, mass: 1.5 });
     const y = useSpring(yRaw, { stiffness: 50, damping: 15, mass: 1.5 });
 
@@ -70,10 +69,10 @@ const FluidText = ({ text, className = "" }: { text: string; className?: string 
 };
 
 const skills = [
-    { name: "Frontend", color: "251, 191, 36" },    // Amber-400
-    { name: "Backend", color: "34, 211, 238" },     // Cyan-400
-    { name: "Performance", color: "52, 211, 153" }, // Emerald-400
-    { name: "Motion", color: "251, 113, 133" }      // Rose-400
+    { name: "Frontend", color: "251, 191, 36" },
+    { name: "Backend", color: "34, 211, 238" },
+    { name: "Performance", color: "52, 211, 153" },
+    { name: "Motion", color: "251, 113, 133" }
 ];
 
 export default function About() {
@@ -83,14 +82,11 @@ export default function About() {
             className="relative min-h-screen flex items-center justify-center bg-[#121212] py-24 overflow-hidden"
         >
 
-            {/* --- Cinematic Background --- */}
+
             <div className="absolute inset-0 z-0">
-                {/* 1. Base Dark Layer */}
                 <div className="absolute inset-0 bg-[#050505]" />
 
-                {/* 2. Ambient Motion Gradients */}
                 <div className="absolute inset-0 overflow-hidden">
-                    {/* Warm Glow (Top Left/Center) - Increased Opacity */}
                     <motion.div
                         animate={{
                             scale: [1, 1.2, 1],
@@ -106,7 +102,6 @@ export default function About() {
                         className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] bg-amber-900/30 rounded-full mix-blend-screen blur-[120px]"
                     />
 
-                    {/* Cool Glow (Bottom Right) - Increased Opacity */}
                     <motion.div
                         animate={{
                             scale: [1, 1.3, 1],
@@ -123,7 +118,6 @@ export default function About() {
                         className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[80vw] bg-indigo-900/20 rounded-full mix-blend-screen blur-[100px]"
                     />
 
-                    {/* Secondary Warm Accent (Center/Right) */}
                     <motion.div
                         animate={{
                             scale: [1, 1.1, 1],
@@ -139,7 +133,6 @@ export default function About() {
                     />
                 </div>
 
-                {/* 3. Noise Overlay */}
                 <div
                     className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
                     style={{
@@ -148,7 +141,8 @@ export default function About() {
                     }}
                 />
 
-                {/* 4. Vignette & Radial Fade */}
+
+
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,#000000_120%)] opacity-80" />
             </div>
 
@@ -158,7 +152,7 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-sm md:text-base font-light tracking-[0.3em] text-gray-500 uppercase mb-12"
+                    className="text-sm md:text-base font-display font-semibold tracking-[-0.03em] text-gray-500 uppercase mb-12"
                 >
                     About Me
                 </motion.h2>
@@ -168,7 +162,7 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    className="text-3xl md:text-5xl font-semibold text-white leading-tight mb-8"
+                    className="text-3xl md:text-5xl font-display font-bold text-white leading-[1.05] tracking-[-0.03em] mb-8"
                 >
                     <FluidText text="Bridging the gap between" />
                     {" "}
@@ -192,14 +186,13 @@ export default function About() {
                     whileHover={{ opacity: 1, y: -2, transition: { duration: 0.3 } }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                    className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto mb-16 cursor-default transition-colors duration-300 hover:text-gray-300"
+                    className="text-lg md:text-xl font-sans font-normal text-gray-400 leading-[1.6] tracking-[-0.01em] max-w-2xl mx-auto mb-16 cursor-default transition-colors duration-300 hover:text-gray-300"
                 >
                     I am a full-stack developer who builds immersive digital experiences from end to end.
                     My work lives at the intersection of thoughtful design and solid engineering — where performance, scalability, and clean architecture matter just as much as aesthetics.
                     Every interaction is crafted to feel intentional, responsive, and meaningful.
                 </motion.p>
 
-                {/* Glass Badges */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -217,7 +210,7 @@ export default function About() {
                                 boxShadow: `0 0 20px rgba(${skill.color}, 0.2)`
                             }}
                             transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                            className="px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-sm font-medium text-gray-300 cursor-default transition-colors shadow-lg shadow-black/20"
+                            className="px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-sm font-sans font-medium text-gray-300 cursor-default transition-colors shadow-lg shadow-black/20"
                         >
                             {skill.name}
                         </motion.div>

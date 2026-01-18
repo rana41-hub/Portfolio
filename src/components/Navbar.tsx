@@ -20,15 +20,11 @@ export default function Navbar() {
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious() || 0;
 
-        // Update styling based on scroll position (transparency)
-        // Only set isScrolled if we are past the top
 
-        // Hide logic: Hide if scrolling down/dissolving, show if scrolling up
-        // Also don't hide if at the very top
         if (latest > previous && latest > 150) {
-            setHidden(true); // Scrolling down
+            setHidden(true);
         } else {
-            setHidden(false); // Scrolling up
+            setHidden(false);
         }
     });
 
@@ -54,15 +50,13 @@ export default function Navbar() {
                     }`}
             >
                 <div className="flex items-center justify-center gap-10 px-8 py-3 rounded-full bg-black/20 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/10">
-                    {/* Logo Removed */}
 
-                    {/* Desktop Menu */}
                     <div className="hidden md:flex items-center space-x-8">
                         {navLinks.map((link) => (
                             <button
                                 key={link.name}
                                 onClick={() => scrollToSection(link.href)}
-                                className="relative text-sm font-medium text-gray-300 hover:text-white transition-colors group"
+                                className="relative text-sm font-sans font-medium hover:text-white transition-colors group leading-[1.2] text-gray-300/80"
                             >
                                 {link.name}
                                 <span className="absolute left-0 bottom-[-2px] w-0 h-[1px] bg-white/80 transition-all duration-300 group-hover:w-full" />
@@ -70,7 +64,6 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    {/* Mobile Text Button (Hamburger alternative for minimal vibe) */}
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         className="md:hidden text-white uppercase text-xs tracking-[0.2em] z-50 mix-blend-difference"
@@ -80,7 +73,6 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div

@@ -29,7 +29,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 style={{ y: y1, opacity: opacity1 }}
                 className="absolute inset-0 flex items-center justify-center text-center"
             >
-                <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white mix-blend-difference">
+                <h1 className="text-6xl md:text-8xl font-display font-bold tracking-[-0.03em] leading-[1.05] text-white mix-blend-difference">
                     Rana Pratap Singh.
                 </h1>
             </motion.div>
@@ -38,7 +38,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 style={{ y: y2, opacity: opacity2 }}
                 className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-10 md:px-20"
             >
-                <h2 className="text-5xl md:text-7xl font-semibold text-white max-w-2xl">
+                <h2 className="text-5xl md:text-7xl font-display font-semibold text-white max-w-2xl tracking-[-0.03em] leading-[1.05]">
                     I build digital experiences.
                 </h2>
             </motion.div>
@@ -47,7 +47,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 style={{ y: y3, opacity: opacity3 }}
                 className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-10 md:px-20 flex justify-end"
             >
-                <h2 className="text-5xl md:text-7xl font-semibold text-white max-w-2xl text-right">
+                <h2 className="text-5xl md:text-7xl font-display font-semibold text-white max-w-2xl text-right tracking-[-0.03em] leading-[1.05]">
                     Engineering Excellence and scalability.
                 </h2>
             </motion.div>
