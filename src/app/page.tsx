@@ -3,9 +3,10 @@
 import { useRef } from "react";
 import ScrollyCanvas from "@/components/ScrollyCanvas";
 import Overlay from "@/components/Overlay";
-import Projects from "@/components/Projects";
+import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import About from "@/components/About";
+import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 
 export default function Home() {
@@ -34,20 +35,7 @@ export default function Home() {
         <Skills />
       </div>
 
-      {/* Contact Section (Placeholder) */}
-      <section id="contact" className="min-h-[50vh] flex items-center justify-center bg-[#121212] py-20">
-        <div className="text-center">
-          <h2 className="text-4xl font-display font-bold text-white mb-8 tracking-[-0.03em] leading-[1.05]">Get In Touch</h2>
-          <a href="mailto:hello@ranapratap.com" className="text-2xl font-sans font-normal text-gray-400 hover:text-white underline decoration-1 underline-offset-8 transition-colors tracking-[-0.01em]">
-            hello@ranapratap.com
-          </a>
-        </div>
-      </section>
-
-      {/* Footer / Padding */}
-      <footer className="py-20 text-center text-gray-500 font-sans text-xs border-t border-white/5 mx-6 tracking-[-0.01em]">
-        © 2026 Rana Pratap Singh
-      </footer>
+      <Contact />
     </main>
   );
 }
