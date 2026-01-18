@@ -6,6 +6,7 @@ import Overlay from "@/components/Overlay";
 import Projects from "@/components/Projects";
 import Navbar from "@/components/Navbar";
 import About from "@/components/About";
+import Skills from "@/components/Skills";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,24 +26,13 @@ export default function Home() {
 
       <About />
 
-      {/* Projects Section */}
       <div id="projects">
         <Projects />
       </div>
 
-      {/* Skills Section (Placeholder) */}
-      <section id="skills" className="min-h-screen flex items-center justify-center bg-[#121212] py-20">
-        <div className="max-w-4xl px-6">
-          <h2 className="text-4xl font-display font-bold text-white mb-12 text-center tracking-[-0.03em] leading-[1.05]">Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-gray-300">
-            {["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Node.js", "WebGL"].map(skill => (
-              <div key={skill} className="p-4 border border-white/10 rounded-lg hover:border-white/30 transition-colors font-sans font-medium text-gray-300">
-                {skill}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div id="skills">
+        <Skills />
+      </div>
 
       {/* Contact Section (Placeholder) */}
       <section id="contact" className="min-h-[50vh] flex items-center justify-center bg-[#121212] py-20">
