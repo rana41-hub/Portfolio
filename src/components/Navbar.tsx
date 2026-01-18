@@ -22,7 +22,6 @@ export default function Navbar() {
 
         // Update styling based on scroll position (transparency)
         // Only set isScrolled if we are past the top
-        setIsScrolled(latest > 50);
 
         // Hide logic: Hide if scrolling down/dissolving, show if scrolling up
         // Also don't hide if at the very top
@@ -51,24 +50,22 @@ export default function Navbar() {
                     filter: hidden ? "blur(10px)" : "blur(0px)"
                 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${isScrolled
-                    ? "bg-black/30 backdrop-blur-md border-b border-white/5 py-4"
-                    : "bg-transparent py-6"
+                className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${hidden ? "-translate-y-[150%] opacity-0" : "translate-y-0 opacity-100"
                     }`}
             >
-                <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+                <div className="flex items-center justify-center gap-10 px-8 py-3 rounded-full bg-black/20 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/10">
                     {/* Logo Removed */}
 
-                    {/* Desktop Menu - Centered if logo is gone, or use justify-end in parent */}
-                    <div className="hidden md:flex items-center space-x-12 ml-auto">
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex items-center space-x-8">
                         {navLinks.map((link) => (
                             <button
                                 key={link.name}
                                 onClick={() => scrollToSection(link.href)}
-                                className="relative text-sm uppercase tracking-widest text-gray-300 hover:text-white transition-colors group"
+                                className="relative text-sm font-medium text-gray-300 hover:text-white transition-colors group"
                             >
                                 {link.name}
-                                <span className="absolute left-0 bottom-[-4px] w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
+                                <span className="absolute left-0 bottom-[-2px] w-0 h-[1px] bg-white/80 transition-all duration-300 group-hover:w-full" />
                             </button>
                         ))}
                     </div>

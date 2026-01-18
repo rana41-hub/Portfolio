@@ -24,7 +24,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
 
     return (
         <div className="absolute inset-0 w-full h-full pointer-events-none z-10 flex flex-col justify-center">
-            {/* Section 1 - Center */}
+
             <motion.div
                 style={{ y: y1, opacity: opacity1 }}
                 className="absolute inset-0 flex items-center justify-center text-center"
@@ -34,7 +34,6 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 </h1>
             </motion.div>
 
-            {/* Section 2 - Left */}
             <motion.div
                 style={{ y: y2, opacity: opacity2 }}
                 className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-10 md:px-20"
@@ -44,13 +43,12 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 </h2>
             </motion.div>
 
-            {/* Section 3 - Right */}
             <motion.div
                 style={{ y: y3, opacity: opacity3 }}
                 className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-10 md:px-20 flex justify-end"
             >
                 <h2 className="text-5xl md:text-7xl font-semibold text-white max-w-2xl text-right">
-                    Bridging design and engineering.
+                    Engineering Excellence and scalability.
                 </h2>
             </motion.div>
         </div>
