@@ -1,6 +1,80 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, MotionValue } from "framer-motion";
+import { useRef, useEffect } from "react";
+
+// --- Proximity Character Component ---
+const ProximityChar = ({ char, mouseX, mouseY, className }: { char: string, mouseX: MotionValue<number>, mouseY: MotionValue<number>, className: string }) => {
+    const ref = useRef<HTMLSpanElement>(null);
+
+    // Calculate distance from mouse to center of this character
+    const distance: MotionValue<number> = useTransform([mouseX, mouseY], ([x, y]: number[]) => {
+        if (!ref.current) return 0;
+        const rect = ref.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        return Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+    });
+
+    // Map distance to effects
+    // Decreased scale range to prevent overlap (1.15 max)
+    const scaleRaw: MotionValue<number> = useTransform(distance, [0, 150], [1.15, 1]);
+    const yRaw: MotionValue<number> = useTransform(distance, [0, 150], [-5, 0]);
+
+    // Smooth physics
+    const scale = useSpring(scaleRaw, { stiffness: 50, damping: 15, mass: 1.5 });
+    const y = useSpring(yRaw, { stiffness: 50, damping: 15, mass: 1.5 });
+
+    return (
+        <motion.span
+            ref={ref}
+            style={{ scale, y }}
+            className={`inline-block cursor-default will-change-transform mx-[1px] ${className}`}
+        >
+            {char}
+        </motion.span>
+    );
+};
+
+const FluidText = ({ text, className = "" }: { text: string; className?: string }) => {
+    const mouseX = useMotionValue(Infinity);
+    const mouseY = useMotionValue(Infinity);
+
+    function handleMouseMove({ clientX, clientY }: React.MouseEvent) {
+        mouseX.set(clientX);
+        mouseY.set(clientY);
+    }
+
+    function handleMouseLeave() {
+        mouseX.set(Infinity);
+        mouseY.set(Infinity);
+    }
+
+    return (
+        <span
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="inline-flex flex-wrap justify-center whitespace-pre relative z-20 cursor-default"
+        >
+            {text.split("").map((char, i) => (
+                <ProximityChar
+                    key={i}
+                    char={char}
+                    mouseX={mouseX}
+                    mouseY={mouseY}
+                    className={className}
+                />
+            ))}
+        </span>
+    );
+};
+
+const skills = [
+    { name: "Frontend", color: "251, 191, 36" },    // Amber-400
+    { name: "Backend", color: "34, 211, 238" },     // Cyan-400
+    { name: "Performance", color: "52, 211, 153" }, // Emerald-400
+    { name: "Motion", color: "251, 113, 133" }      // Rose-400
+];
 
 export default function About() {
     return (
@@ -8,13 +82,77 @@ export default function About() {
             id="about"
             className="relative min-h-screen flex items-center justify-center bg-[#121212] py-24 overflow-hidden"
         >
-            {/* Background Elements: Subtle radial gradient for depth / vignette */}
-            <div
-                className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.03)_0%,_transparent_70%)] pointer-events-none"
-            />
+
+            {/* --- Cinematic Background --- */}
+            <div className="absolute inset-0 z-0">
+                {/* 1. Base Dark Layer */}
+                <div className="absolute inset-0 bg-[#050505]" />
+
+                {/* 2. Ambient Motion Gradients */}
+                <div className="absolute inset-0 overflow-hidden">
+                    {/* Warm Glow (Top Left/Center) - Increased Opacity */}
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.2, 1],
+                            opacity: [0.5, 0.6, 0.5],
+                            x: [0, 50, 0],
+                            y: [0, 30, 0],
+                        }}
+                        transition={{
+                            duration: 25,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] bg-amber-900/30 rounded-full mix-blend-screen blur-[120px]"
+                    />
+
+                    {/* Cool Glow (Bottom Right) - Increased Opacity */}
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.3, 1],
+                            opacity: [0.4, 0.6, 0.4],
+                            x: [0, -40, 0],
+                            y: [0, -20, 0],
+                        }}
+                        transition={{
+                            duration: 30,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 2,
+                        }}
+                        className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[80vw] bg-indigo-900/20 rounded-full mix-blend-screen blur-[100px]"
+                    />
+
+                    {/* Secondary Warm Accent (Center/Right) */}
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.1, 1],
+                            opacity: [0.2, 0.4, 0.2],
+                        }}
+                        transition={{
+                            duration: 35,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 5,
+                        }}
+                        className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] bg-rose-900/20 rounded-full mix-blend-screen blur-[150px]"
+                    />
+                </div>
+
+                {/* 3. Noise Overlay */}
+                <div
+                    className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
+                    style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                        backgroundSize: "150px 150px",
+                    }}
+                />
+
+                {/* 4. Vignette & Radial Fade */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,#000000_120%)] opacity-80" />
+            </div>
 
             <div className="relative z-10 max-w-4xl px-6 md:px-12 text-center">
-                {/* Section Heading */}
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -25,7 +163,6 @@ export default function About() {
                     About Me
                 </motion.h2>
 
-                {/* Identity Statement */}
                 <motion.h3
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -33,37 +170,58 @@ export default function About() {
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                     className="text-3xl md:text-5xl font-semibold text-white leading-tight mb-8"
                 >
-                    Bridging the gap between <span className="text-gray-400">design</span> and <span className="text-gray-400">engineering</span>.
+                    <FluidText text="Bridging the gap between" />
+                    {" "}
+                    <FluidText
+                        text="design"
+                        className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-orange-400"
+                    />
+                    {" "}
+                    <FluidText text="and" />
+                    {" "}
+                    <FluidText
+                        text="engineering"
+                        className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-indigo-400"
+                    />
+                    .
                 </motion.h3>
 
-                {/* Descriptive Paragraph */}
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ opacity: 1, y: -2, transition: { duration: 0.3 } }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                    className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto mb-16"
+                    className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto mb-16 cursor-default transition-colors duration-300 hover:text-gray-300"
                 >
                     I am a full-stack developer who builds immersive digital experiences from end to end.
                     My work lives at the intersection of thoughtful design and solid engineering — where performance, scalability, and clean architecture matter just as much as aesthetics.
                     Every interaction is crafted to feel intentional, responsive, and meaningful.
                 </motion.p>
 
-                {/* Minimalist Highlights */}
+                {/* Glass Badges */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                    className="inline-flex items-center justify-center gap-6 text-sm md:text-base font-mono text-gray-500 border border-white/10 px-8 py-3 rounded-full bg-white/5 backdrop-blur-sm"
+                    className="flex flex-wrap items-center justify-center gap-4"
                 >
-                    <span>Frontend</span>
-                    <span className="text-gray-700">×</span>
-                    <span>Backend</span>
-                    <span className="text-gray-700">×</span>
-                    <span>Performance</span>
-                    <span className="text-gray-700">×</span>
-                    <span>Motion</span>
+                    {skills.map((skill) => (
+                        <motion.div
+                            key={skill.name}
+                            whileHover={{
+                                scale: 1.05,
+                                borderColor: `rgba(${skill.color}, 0.5)`,
+                                backgroundColor: `rgba(${skill.color}, 0.1)`,
+                                boxShadow: `0 0 20px rgba(${skill.color}, 0.2)`
+                            }}
+                            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                            className="px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-sm font-medium text-gray-300 cursor-default transition-colors shadow-lg shadow-black/20"
+                        >
+                            {skill.name}
+                        </motion.div>
+                    ))}
                 </motion.div>
             </div>
         </section>
