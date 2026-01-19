@@ -29,7 +29,10 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 style={{ y: y1, opacity: opacity1 }}
                 className="absolute inset-0 flex items-center justify-center text-center"
             >
-                <h1 className="text-6xl md:text-8xl font-display font-bold tracking-[-0.03em] leading-[1.05] text-white mix-blend-difference">
+                <h1
+                    className="text-6xl md:text-8xl font-display font-bold tracking-[-0.01em] leading-[1.05] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/90 pb-4"
+                    style={{ textShadow: "0 4px 24px rgba(0,0,0,0.1)" }}
+                >
                     Rana Pratap Singh.
                 </h1>
             </motion.div>
