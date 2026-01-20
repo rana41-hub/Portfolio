@@ -68,6 +68,34 @@ const FluidText = ({ text, className = "" }: { text: string; className?: string 
     );
 };
 
+const educationData = [
+    {
+        institution: "BABU BANARASI DAS UNIVERSITY",
+        details: [
+            {
+                degree: "Bachelor of Technology [CS & AI]",
+                score: "9.35 GPA",
+                duration: "2024 — 2028"
+            }
+        ]
+    },
+    {
+        institution: "ST. ANTHONY PUBLIC SCHOOL",
+        details: [
+            {
+                degree: "Senior Secondary (XII)",
+                score: "92.2%",
+                duration: "2023 — 2024"
+            },
+            {
+                degree: "Secondary (X)",
+                score: "90.83%",
+                duration: "2021 — 2022"
+            }
+        ]
+    }
+];
+
 const skills = [
     { name: "Frontend", color: "251, 191, 36" },
     { name: "Backend", color: "34, 211, 238" },
@@ -192,6 +220,63 @@ export default function About() {
                     My work lives at the intersection of thoughtful design and solid engineering — where performance, scalability, and clean architecture matter just as much as aesthetics.
                     Every interaction is crafted to feel intentional, responsive, and meaningful.
                 </motion.p>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                    className="mb-20 w-full max-w-2xl mx-auto mt-8"
+                >
+                    <h4 className="text-sm font-display font-semibold tracking-[-0.03em] text-gray-500 uppercase mb-4 text-center">
+                        Education
+                    </h4>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+                        {educationData.map((edu, index) => (
+                            <motion.div
+                                key={index}
+                                whileHover={{
+                                    y: -2,
+                                    borderColor: "rgba(255, 255, 255, 0.2)",
+                                    backgroundColor: "rgba(255, 255, 255, 0.08)"
+                                }}
+                                transition={{ duration: 0.3 }}
+                                className="h-full p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-colors text-left flex flex-col justify-between"
+                            >
+                                <div>
+                                    <h5 className="text-white font-medium text-base mb-6 leading-tight">
+                                        {edu.institution}
+                                    </h5>
+                                    <div className="space-y-6">
+                                        {edu.details.map((detail, i) => (
+                                            <div key={i} className="relative">
+                                                {i > 0 && (
+                                                    <div className="absolute -top-3 left-0 w-8 h-[1px] bg-white/10" />
+                                                )}
+                                                <div className="flex flex-col gap-1">
+                                                    <div className="flex items-baseline justify-between gap-2">
+                                                        <p className="text-gray-300 text-sm font-medium">
+                                                            {detail.degree}
+                                                        </p>
+                                                        {detail.score && (
+                                                            <span className="text-xs text-white/40 font-mono">
+                                                                {detail.score}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <p className="text-gray-500 text-xs font-mono uppercase tracking-wider">
+                                                        {detail.duration}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
