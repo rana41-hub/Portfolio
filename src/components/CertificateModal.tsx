@@ -9,6 +9,7 @@ export interface Certificate {
     year: string;
     description: string;
     image?: string;
+    art?: string;
     link?: string;
     id: string;
 }

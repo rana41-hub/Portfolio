@@ -104,7 +104,8 @@ const certificatesData: Certificate[] = [
         issuer: "Course Certification",
         year: "2024",
         description: "Comprehensive training in Cascading Style Sheets, mastering layout, typography, and responsive design techniques.",
-        image: "/certificates/CSS Completion.jpg"
+        image: "/certificates/CSS Completion.jpg",
+        art: "/certificates/icon-css.png"
     },
     {
         id: "2",
@@ -112,7 +113,8 @@ const certificatesData: Certificate[] = [
         issuer: "Course Certification",
         year: "2024",
         description: "Proficiency in HyperText Markup Language, semantic web structure, and best practices for accessibility.",
-        image: "/certificates/HTML Completion.png"
+        image: "/certificates/HTML Completion.png",
+        art: "/certificates/icon-html.png"
     },
     {
         id: "3",
@@ -120,7 +122,8 @@ const certificatesData: Certificate[] = [
         issuer: "Industry Certification",
         year: "2025",
         description: "Development of essential forward-looking skills for the modern digital landscape and workplace readiness.",
-        image: "/certificates/Future ready skills.PNG"
+        image: "/certificates/Future ready skills.PNG",
+        art: "/certificates/icon-future.png"
     },
     {
         id: "4",
@@ -128,7 +131,8 @@ const certificatesData: Certificate[] = [
         issuer: "Google",
         year: "2024",
         description: "Official recognition of achievement and skill demonstration within the Google developer ecosystem.",
-        image: "/certificates/Google badge.jpg"
+        image: "/certificates/Google badge.jpg",
+        art: "/certificates/icon-google.png"
     },
     {
         id: "5",
@@ -136,7 +140,8 @@ const certificatesData: Certificate[] = [
         issuer: "Google Developer Groups",
         year: "2025",
         description: "Certificate of appreciation given by GDG Nirmana for community engagement and technical contribution.",
-        image: "/certificates/Nirmana GDG certificate.jpg"
+        image: "/certificates/Nirmana GDG certificate.jpg",
+        art: "/certificates/icon-google.png"
     },
     {
         id: "6",
@@ -144,7 +149,8 @@ const certificatesData: Certificate[] = [
         issuer: "Tech Community",
         year: "2025",
         description: "Completion of the Week 1 August technical trivia challenge in Google Cloud arcade, demonstrating breadth of knowledge in cloud computing .",
-        image: "/certificates/Trivia week 1.PNG"
+        image: "/certificates/Trivia week 1.PNG",
+        art: "/certificates/icon-trivia.png"
     },
     {
         id: "7",
@@ -152,7 +158,8 @@ const certificatesData: Certificate[] = [
         issuer: "Tech Community",
         year: "2025",
         description: "Consistently demonstrating technical expertise by securing recognition in the Week 2 trivia challenge.",
-        image: "/certificates/Trivia week 2.PNG"
+        image: "/certificates/Trivia week 2.PNG",
+        art: "/certificates/icon-trivia.png"
     },
     {
         id: "8",
@@ -160,7 +167,8 @@ const certificatesData: Certificate[] = [
         issuer: "Tech Community",
         year: "2025",
         description: "Continued excellence in technical knowledge sharing and problem solving in the Week 3 challenge.",
-        image: "/certificates/Trivia week 3.PNG"
+        image: "/certificates/Trivia week 3.PNG",
+        art: "/certificates/icon-trivia.png"
     },
     {
         id: "9",
@@ -168,7 +176,8 @@ const certificatesData: Certificate[] = [
         issuer: "Tech Community",
         year: "2025",
         description: "Final week victory in the month-long technical trivia series, showcasing sustained engagement and knowledge.",
-        image: "/certificates/Trivia week 4.PNG"
+        image: "/certificates/Trivia week 4.PNG",
+        art: "/certificates/icon-trivia.png"
     }
 ];
 
@@ -386,14 +395,17 @@ export default function About() {
                             >
                                 <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                <div className="relative h-32 w-full overflow-hidden bg-black/20">
-                                    {cert.image && (
-                                        <div
-                                            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100"
-                                            style={{ backgroundImage: `url(${cert.image})` }}
-                                        />
+                                <div className="relative h-48 w-full overflow-hidden bg-black/20 flex items-center justify-center p-6">
+                                    {(cert.art || cert.image) && (
+                                        <div className="relative w-full h-full flex items-center justify-center">
+                                            <img
+                                                src={cert.art || cert.image}
+                                                alt=""
+                                                className="w-auto h-full max-w-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-transform duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.3)]"
+                                            />
+                                        </div>
                                     )}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-90" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-90" />
                                 </div>
 
                                 <div className="flex flex-col flex-grow justify-between p-6 pt-2">
