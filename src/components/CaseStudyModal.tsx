@@ -42,7 +42,6 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
         <AnimatePresence>
             {isOpen && (
                 <>
-                    {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -51,7 +50,6 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
                         className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md"
                     />
 
-                    {/* Modal Container */}
                     <motion.div
                         initial={{ opacity: 0, y: 50, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -59,7 +57,6 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                         className="fixed inset-0 z-50 m-auto w-full max-w-6xl h-[90vh] bg-[#0A0A0A] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
                     >
-                        {/* Close Button */}
                         <button
                             onClick={onClose}
                             className="absolute top-6 right-6 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:bg-white/10 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-md border border-white/5"
@@ -71,7 +68,6 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
                         </button>
 
                         <div className="flex-1 overflow-y-auto custom-scrollbar">
-                            {/* Hero Image Section */}
                             <div className="relative w-full h-[50vh] bg-[#121212]">
                                 {project.images && project.images.length > 0 ? (
                                     <>
@@ -87,7 +83,6 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
                                     </div>
                                 )}
 
-                                {/* Floating Title on Hero */}
                                 <div className="absolute bottom-12 left-6 md:left-12 max-w-4xl">
                                     <div className="flex items-center gap-4 mb-4">
                                         <span className="px-3 py-1 rounded-full border border-white/20 bg-black/30 backdrop-blur-md text-xs font-mono uppercase tracking-wider text-white/80">
@@ -101,11 +96,8 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
                                 </div>
                             </div>
 
-                            {/* Content Section */}
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 px-6 md:px-12 py-16">
-                                {/* Main Content: Description & Case Study */}
                                 <div className="lg:col-span-2 space-y-12">
-                                    {/* High-level overview */}
                                     <div>
                                         <h3 className="text-xl font-display text-white mb-4">Overview</h3>
                                         <p className="text-lg text-gray-300 font-sans font-light leading-relaxed">
@@ -113,7 +105,6 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
                                         </p>
                                     </div>
 
-                                    {/* Problem / Solution / Outcome Grid */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-white/10">
                                         <div className="space-y-4">
                                             <h4 className="text-sm font-mono uppercase tracking-wider text-amber-400/80">The Challenge</h4>
@@ -136,9 +127,7 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
                                     </div>
                                 </div>
 
-                                {/* Sidebar: Metadata & Actions */}
                                 <div className="space-y-10">
-                                    {/* Action Button */}
                                     {project.liveUrl && (
                                         <a
                                             href={project.liveUrl}
@@ -153,7 +142,6 @@ export default function CaseStudyModal({ isOpen, onClose, project }: CaseStudyMo
                                         </a>
                                     )}
 
-                                    {/* Metadata List */}
                                     <div className="space-y-8 text-sm">
                                         <div>
                                             <h4 className="text-white/40 font-mono uppercase tracking-wider mb-3">Role</h4>

@@ -21,7 +21,6 @@ export default function ScrollyCanvas({ containerRef }: { containerRef: React.Re
             for (let i = 0; i <= frameCount; i++) {
                 const promise = new Promise<void>((resolve) => {
                     const img = new Image();
-                    // Pad zeros: frame_000, frame_001, etc.
                     const formattedIndex = i.toString().padStart(3, "0");
                     img.src = `/sequence/frame_${formattedIndex}.webp`;
 

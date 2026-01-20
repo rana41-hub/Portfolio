@@ -10,7 +10,7 @@ export interface Certificate {
     description: string;
     image?: string;
     link?: string;
-    id: string; // unique identifier
+    id: string;
 }
 
 interface CertificateModalProps {
@@ -37,7 +37,6 @@ export default function CertificateModal({ isOpen, onClose, certificate }: Certi
         <AnimatePresence>
             {isOpen && (
                 <>
-                    {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -46,7 +45,6 @@ export default function CertificateModal({ isOpen, onClose, certificate }: Certi
                         className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
                     />
 
-                    {/* Modal Container */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -54,7 +52,6 @@ export default function CertificateModal({ isOpen, onClose, certificate }: Certi
                         transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
                         className="fixed inset-0 z-50 m-auto w-full max-w-4xl h-fit max-h-[85vh] bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col ring-1 ring-white/5"
                     >
-                        {/* Close Button */}
                         <button
                             onClick={onClose}
                             className="absolute top-6 right-6 z-30 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-md border border-white/10 mx-2 my-2 group"
@@ -66,7 +63,6 @@ export default function CertificateModal({ isOpen, onClose, certificate }: Certi
                         </button>
 
                         <div className="overflow-y-auto custom-scrollbar p-0 flex flex-col md:flex-row h-full">
-                            {/* Certificate Image Section */}
                             <div className="relative w-full md:w-[55%] bg-white/5 flex items-center justify-center overflow-hidden min-h-[300px] md:min-h-full border-b md:border-b-0 md:border-r border-white/10">
                                 {certificate.image ? (
                                     <div className="relative w-full h-full p-8 md:p-12 flex items-center justify-center">
@@ -94,7 +90,6 @@ export default function CertificateModal({ isOpen, onClose, certificate }: Certi
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                             </div>
 
-                            {/* Content Section */}
                             <div className="w-full md:w-[45%] p-8 md:p-10 flex flex-col justify-center bg-transparent space-y-8">
                                 <div>
                                     <div className="flex items-center gap-3 mb-6">

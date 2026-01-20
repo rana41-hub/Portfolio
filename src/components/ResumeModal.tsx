@@ -30,7 +30,6 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         <AnimatePresence>
             {isOpen && (
                 <>
-                    {/* Backdrop */}
                     <motion.div
                         key="backdrop"
                         initial={{ opacity: 0 }}
@@ -41,7 +40,6 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                         className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[4px]"
                     />
 
-                    {/* Modal Container */}
                     <motion.div
                         key="modal"
                         initial={{ opacity: 0, y: 12, scale: 0.96 }}
@@ -50,7 +48,6 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                         transition={{ duration: 0.45, ease: [0.19, 1, 0.22, 1] }}
                         className="fixed inset-0 z-50 m-auto w-full max-w-4xl h-[85vh] bg-black/40 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
                     >
-                        {/* Header & Close Button */}
                         <div className="flex items-center justify-between px-8 py-6 border-b border-white/5 bg-white/[0.02]">
                             <div>
                                 <h2 className="text-2xl font-display font-medium text-white tracking-tight">Resume</h2>
@@ -67,7 +64,6 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                                         Download PDF
                                         <svg className="w-4 h-4 transition-transform group-hover:translate-y-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                                     </span>
-                                    {/* Shimmer effect */}
                                     <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:animate-shimmer" />
                                 </a>
 
@@ -83,7 +79,6 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                             </div>
                         </div>
 
-                        {/* PDF Viewer */}
                         <div className="flex-1 bg-white/[0.02] relative w-full overflow-hidden flex flex-col items-center justify-center">
                             <div className="w-full h-full max-w-[850px] p-4 md:p-8 flex flex-col">
                                 <div className="flex-1 w-full bg-white rounded-md shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden border border-white/5 relative ring-1 ring-white/10">
