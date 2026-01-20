@@ -100,13 +100,13 @@ export default function Projects() {
                             ease: "easeInOut",
                             delay: 2,
                         }}
-                        className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[80vw] bg-indigo-900/20 rounded-full mix-blend-screen blur-[100px]"
+                        className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[80vw] bg-fuchsia-900/20 rounded-full mix-blend-screen blur-[100px]"
                     />
 
                     <motion.div
                         animate={{
                             scale: [1, 1.1, 1],
-                            opacity: [0.2, 0.4, 0.2],
+                            opacity: [0.3, 0.5, 0.3],
                         }}
                         transition={{
                             duration: 35,

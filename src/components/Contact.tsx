@@ -148,7 +148,7 @@ export default function Contact() {
                         ))}
                     </div>
 
-                    <p className="text-xs font-mono text-gray-700 uppercase tracking-widest mt-8">
+                    <p className="text-xs font-mono text-gray-500 font-medium uppercase tracking-widest mt-8">
                         Available for select projects.
                     </p>
                 </motion.div>

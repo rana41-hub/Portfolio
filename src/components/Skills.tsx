@@ -187,7 +187,7 @@ export default function Skills() {
                     transition={{ delay: 1, duration: 1 }}
                     className="mt-24 text-center"
                 >
-                    <p className="text-xs font-mono text-gray-600/60 uppercase tracking-widest">
+                    <p className="text-xs font-mono text-gray-400 font-medium uppercase tracking-widest">
                         Always learning. Always refining.
                     </p>
                 </motion.div>

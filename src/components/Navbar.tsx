@@ -17,16 +17,24 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isResumeOpen, setIsResumeOpen] = useState(false);
+    const [isPastHero, setIsPastHero] = useState(false);
     const { scrollY } = useScroll();
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious() || 0;
 
-
         if (latest > previous && latest > 150) {
             setHidden(true);
         } else {
             setHidden(false);
+        }
+
+        // Hero section is roughly 500vh. We want the navbar to be solid when we approach the content.
+        // Using 400vh (approx 4 * window.innerHeight) as a threshold.
+        // Safety check for window existence
+        if (typeof window !== "undefined") {
+            const heroHeight = window.innerHeight * 4;
+            setIsPastHero(latest > heroHeight);
         }
     });
 
@@ -51,7 +59,10 @@ export default function Navbar() {
                 className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${hidden ? "-translate-y-[150%] opacity-0" : "translate-y-0 opacity-100"
                     }`}
             >
-                <div className="flex items-center justify-center gap-10 px-8 py-3 rounded-full bg-black/20 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/10">
+                <div className={`flex items-center justify-center gap-10 px-8 py-3 rounded-full transition-all duration-500 border shadow-lg ${isPastHero
+                    ? "bg-black/80 border-white/20 shadow-black/30 backdrop-blur-xl"
+                    : "bg-black/20 border-white/10 shadow-black/10 backdrop-blur-xl"
+                    }`}>
 
                     <div className="hidden md:flex items-center space-x-8">
                         {navLinks.map((link) => (

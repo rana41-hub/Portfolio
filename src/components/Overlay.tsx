@@ -27,14 +27,43 @@ export default function Overlay({ containerRef }: OverlayProps) {
 
             <motion.div
                 style={{ y: y1, opacity: opacity1 }}
-                className="absolute inset-0 flex items-center justify-center text-center"
+                className="absolute inset-0 flex flex-col items-center justify-center text-center p-4"
             >
-                <h1
+                <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                     className="text-6xl md:text-8xl font-display font-bold tracking-[-0.01em] leading-[1.05] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/90 pb-4"
                     style={{ textShadow: "0 4px 24px rgba(0,0,0,0.1)" }}
                 >
                     Rana Pratap Singh.
-                </h1>
+                </motion.h1>
+
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+                    className="text-lg md:text-xl font-sans font-medium text-white/70 mt-2 max-w-lg tracking-wide"
+                >
+                    Full-stack developer crafting thoughtful digital experiences.
+                </motion.p>
+
+                {/* Scroll Cue */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 1 }}
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                >
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-white/70 font-medium font-sans">
+                        Scroll
+                    </span>
+                    <motion.div
+                        className="w-[1px] h-12 bg-gradient-to-b from-white/0 via-white/20 to-white/0"
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                </motion.div>
             </motion.div>
 
             <motion.div
