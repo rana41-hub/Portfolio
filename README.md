@@ -7,7 +7,7 @@ About
 This is my personal portfolio website where I present my skills, projects, certifications, and experience.
 The site focuses on clean UI, smooth animations, and performance-driven engineering.
 
-Tech Stack
+**Tech Stack
 
 React 18
 
@@ -27,37 +27,34 @@ Git & GitHub
 
 Vercel
 
-Getting Started
-Prerequisites
+**Getting Started Prerequisites
 
 Node.js (v16 or higher)
 
-npm or yarn
+npm or yarn Installation
 
-Installation
-
-Clone the repository:
+**Clone the repository:
 
 git clone <repository-url>
 cd portfolio
 
 
-Install dependencies:
+**Install dependencies:
 
 npm install
 
 
-Start the development server:
+**Start the development server:
 
 npm run dev
 
 
 Open http://localhost:3000 in your browser.
 
-Building for Production
+**Building for Production
 npm run build
 
-Features
+**Features
 
 Fully responsive design
 
