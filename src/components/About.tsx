@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, useSpring, MotionValue } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import CertificateModal, { Certificate } from "./CertificateModal";
 
 
 const ProximityChar = ({ char, mouseX, mouseY, className }: { char: string, mouseX: MotionValue<number>, mouseY: MotionValue<number>, className: string }) => {
@@ -96,6 +97,81 @@ const educationData = [
     }
 ];
 
+const certificatesData: Certificate[] = [
+    {
+        id: "1",
+        title: "CSS Completion",
+        issuer: "Course Certification",
+        year: "2024",
+        description: "Comprehensive training in Cascading Style Sheets, mastering layout, typography, and responsive design techniques.",
+        image: "/certificates/CSS Completion.jpg"
+    },
+    {
+        id: "2",
+        title: "HTML Completion",
+        issuer: "Course Certification",
+        year: "2024",
+        description: "Proficiency in HyperText Markup Language, semantic web structure, and best practices for accessibility.",
+        image: "/certificates/HTML Completion.png"
+    },
+    {
+        id: "3",
+        title: "Future Ready Skills",
+        issuer: "Industry Certification",
+        year: "2025",
+        description: "Development of essential forward-looking skills for the modern digital landscape and workplace readiness.",
+        image: "/certificates/Future ready skills.PNG"
+    },
+    {
+        id: "4",
+        title: "Google Badge",
+        issuer: "Google",
+        year: "2024",
+        description: "Official recognition of achievement and skill demonstration within the Google developer ecosystem.",
+        image: "/certificates/Google badge.jpg"
+    },
+    {
+        id: "5",
+        title: "Nirmana GDG Certificate",
+        issuer: "Google Developer Groups",
+        year: "2025",
+        description: "Certificate of appreciation given by GDG Nirmana for community engagement and technical contribution.",
+        image: "/certificates/Nirmana GDG certificate.jpg"
+    },
+    {
+        id: "6",
+        title: "Trivia Week 1",
+        issuer: "Tech Community",
+        year: "2025",
+        description: "Completion of the Week 1 August technical trivia challenge in Google Cloud arcade, demonstrating breadth of knowledge in cloud computing .",
+        image: "/certificates/Trivia week 1.PNG"
+    },
+    {
+        id: "7",
+        title: "Trivia Week 2",
+        issuer: "Tech Community",
+        year: "2025",
+        description: "Consistently demonstrating technical expertise by securing recognition in the Week 2 trivia challenge.",
+        image: "/certificates/Trivia week 2.PNG"
+    },
+    {
+        id: "8",
+        title: "Trivia Week 3",
+        issuer: "Tech Community",
+        year: "2025",
+        description: "Continued excellence in technical knowledge sharing and problem solving in the Week 3 challenge.",
+        image: "/certificates/Trivia week 3.PNG"
+    },
+    {
+        id: "9",
+        title: "Trivia Week 4",
+        issuer: "Tech Community",
+        year: "2025",
+        description: "Final week victory in the month-long technical trivia series, showcasing sustained engagement and knowledge.",
+        image: "/certificates/Trivia week 4.PNG"
+    }
+];
+
 const skills = [
     { name: "Frontend", color: "251, 191, 36" },
     { name: "Backend", color: "34, 211, 238" },
@@ -104,6 +180,8 @@ const skills = [
 ];
 
 export default function About() {
+    const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
+
     return (
         <section
             id="about"
@@ -282,6 +360,73 @@ export default function About() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
+                    className="mb-20 w-full max-w-4xl mx-auto"
+                >
+                    <h4 className="text-sm font-display font-semibold tracking-[-0.03em] text-gray-500 uppercase mb-8 text-center">
+                        Certifications
+                    </h4>
+
+                    <div
+                        className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:-mx-8 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    >
+                        {certificatesData.map((cert, index) => (
+                            <motion.div
+                                key={cert.id}
+                                layoutId={`cert-${cert.id}`}
+                                onClick={() => setSelectedCertificate(cert)}
+                                whileHover={{
+                                    y: -5,
+                                    borderColor: "rgba(255, 255, 255, 0.2)",
+                                    backgroundColor: "rgba(255, 255, 255, 0.08)"
+                                }}
+                                transition={{ duration: 0.3 }}
+                                className="group cursor-pointer relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-colors overflow-hidden min-w-[280px] w-[280px] snap-center flex-shrink-0 flex flex-col"
+                            >
+                                <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                                <div className="relative h-32 w-full overflow-hidden bg-black/20">
+                                    {cert.image && (
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                                            style={{ backgroundImage: `url(${cert.image})` }}
+                                        />
+                                    )}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-90" />
+                                </div>
+
+                                <div className="flex flex-col flex-grow justify-between p-6 pt-2">
+                                    <div className="mb-8">
+                                        <h5 className="text-white font-bold text-lg mb-2 leading-tight group-hover:text-amber-200 transition-colors">
+                                            {cert.title}
+                                        </h5>
+                                        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-gray-500">
+                                            <span className="text-gray-400">{cert.issuer}</span>
+                                            <span className="w-1 h-1 rounded-full bg-gray-600" />
+                                            <span>{cert.year}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center justify-between mt-auto">
+                                        <div className="h-8 w-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 text-white/50">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M15 3h6v6"></path>
+                                                <path d="M10 14 21 3"></path>
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                     className="flex flex-wrap items-center justify-center gap-4"
                 >
@@ -302,6 +447,12 @@ export default function About() {
                     ))}
                 </motion.div>
             </div>
+
+            <CertificateModal
+                isOpen={!!selectedCertificate}
+                onClose={() => setSelectedCertificate(null)}
+                certificate={selectedCertificate}
+            />
         </section>
     );
 }
