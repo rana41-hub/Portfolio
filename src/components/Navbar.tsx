@@ -29,9 +29,6 @@ export default function Navbar() {
             setHidden(false);
         }
 
-        // Hero section is roughly 500vh. We want the navbar to be solid when we approach the content.
-        // Using 400vh (approx 4 * window.innerHeight) as a threshold.
-        // Safety check for window existence
         if (typeof window !== "undefined") {
             const heroHeight = window.innerHeight * 4;
             setIsPastHero(latest > heroHeight);
@@ -86,7 +83,6 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-            {/* Resume CTA Button - Top Right */}
             <motion.button
                 initial={{ y: -100, opacity: 0 }}
                 animate={{
@@ -108,7 +104,6 @@ export default function Navbar() {
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 7l-10 10M8 7h9v9" />
                 </svg>
-                {/* Subtle Glow Effect */}
                 <div className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
 
@@ -136,7 +131,6 @@ export default function Navbar() {
                 )}
             </AnimatePresence>
 
-            {/* Resume Modal */}
             <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
         </>
     );

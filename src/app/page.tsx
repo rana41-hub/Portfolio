@@ -16,9 +16,9 @@ export default function Home() {
     <main className="bg-[#121212] flex flex-col">
       <Navbar />
 
-      {/* Scroll Sequence Container - "Home" */}
+      <Navbar />
+
       <div id="home" ref={containerRef} className="relative h-[500vh]">
-        {/* Sticky Viewport */}
         <div className="sticky top-0 h-[96vh] w-full overflow-hidden">
           <ScrollyCanvas containerRef={containerRef} />
           <Overlay containerRef={containerRef} />

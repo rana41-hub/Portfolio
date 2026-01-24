@@ -67,7 +67,6 @@ export default function Projects() {
     return (
         <section className="relative z-20 min-h-screen py-32 px-6 md:px-20 overflow-hidden bg-[#050505]" id="projects">
 
-            {/* Layered Background Elements */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-[#050505]" />
 
@@ -149,13 +148,10 @@ export default function Projects() {
                             onClick={() => handleOpenModal(project)}
                             className="group relative cursor-pointer"
                         >
-                            {/* Card Body */}
                             <div className="relative h-[450px] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/5 transition-colors duration-500 group-hover:border-white/10 group-hover:bg-[#0F0F0F]">
 
-                                {/* Image Overlay Gradient (Top down) */}
                                 <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A] z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
 
-                                {/* Background Image */}
                                 <div className="absolute inset-0 z-0">
                                     <div
                                         className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
@@ -164,7 +160,6 @@ export default function Projects() {
                                     <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20" />
                                 </div>
 
-                                {/* Content */}
                                 <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10">
                                     <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
                                         <div className="flex items-center gap-3 mb-3">
@@ -185,7 +180,6 @@ export default function Projects() {
                                         </p>
                                     </div>
 
-                                    {/* Action Hint */}
                                     <div className="mt-6 flex items-center gap-2 text-white/0 group-hover:text-white/80 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 text-sm font-medium">
                                         <span>View Case Study</span>
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

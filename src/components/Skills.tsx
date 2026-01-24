@@ -36,7 +36,6 @@ export default function Skills() {
     return (
         <section className="relative min-h-[80vh] flex flex-col items-center justify-center py-32 px-6 bg-[#080808] overflow-hidden">
 
-            {/* Layered Background Elements */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-[#050505]" />
 
@@ -100,7 +99,6 @@ export default function Skills() {
 
             <div className="relative z-10 max-w-5xl w-full">
 
-                {/* Header */}
                 <div className="text-center mb-20 md:mb-24">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -122,7 +120,6 @@ export default function Skills() {
                     </motion.p>
                 </div>
 
-                {/* Categories Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
                     {skillCategories.map((category, index) => (
                         <motion.div
@@ -179,7 +176,6 @@ export default function Skills() {
                     ))}
                 </div>
 
-                {/* Closing Line */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}

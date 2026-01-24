@@ -48,7 +48,6 @@ export default function Overlay({ containerRef }: OverlayProps) {
                     Full-stack developer crafting thoughtful digital experiences.
                 </motion.p>
 
-                {/* Scroll Cue */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

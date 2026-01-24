@@ -95,5 +95,5 @@ export default function ScrollyCanvas({ containerRef }: { containerRef: React.Re
     );
 }
 
-// force rebuild – final hero depth
+
 

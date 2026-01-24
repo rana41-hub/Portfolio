@@ -47,7 +47,6 @@ export default function Contact() {
     return (
         <section id="contact" className="relative min-h-[70vh] flex flex-col items-center justify-center py-32 px-6 bg-[#050505] overflow-hidden">
 
-            {/* Layered Background Elements - Darker & Subtler than previous sections */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-[#050505]" />
 
@@ -93,7 +92,6 @@ export default function Contact() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_100%)] opacity-80" />
             </div>
 
-            {/* Content */}
             <div className="relative z-10 w-full max-w-4xl mx-auto text-center">
 
                 <motion.div
@@ -155,7 +153,6 @@ export default function Contact() {
 
             </div>
 
-            {/* Footer */}
             <footer className="absolute bottom-6 w-full text-center text-gray-500 font-sans text-xs tracking-[-0.01em] opacity-60">
                 © 2026 Rana Pratap Singh
             </footer>
