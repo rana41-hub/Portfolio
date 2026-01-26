@@ -178,6 +178,15 @@ const certificatesData: Certificate[] = [
         description: "Final week victory in the month-long technical trivia series, showcasing sustained engagement and knowledge.",
         image: "/certificates/Trivia week 4.PNG",
         art: "/certificates/icon-trivia.png"
+    },
+    {
+        id: "10",
+        title: "Google AI Studio Certificate",
+        issuer: "Google",
+        year: "2026",
+        description: "Proficiency in using Google AI Studio for building and deploying generative AI models.",
+        image: "/certificates/Google AI Studio Certificate.png",
+        art: "/certificates/icon-google.png"
     }
 ];
 
