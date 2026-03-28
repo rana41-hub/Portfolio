@@ -51,20 +51,31 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                         <div className="flex items-center justify-between px-8 py-6 border-b border-white/5 bg-white/[0.02]">
                             <div>
                                 <h2 className="text-2xl font-display font-medium text-white tracking-tight">Resume</h2>
-                                <p className="text-xs text-white/40 mt-1 font-mono tracking-wide uppercase">PDF</p>
+                                <p className="text-xs text-white/40 mt-1 font-mono tracking-wide uppercase">PDF & DOCX</p>
                             </div>
 
-                            <div className="flex items-center gap-6">
+                            <div className="flex items-center gap-4">
                                 <a
-                                    href="/resume.pdf"
-                                    download="Rana_Pratap_Resume.pdf"
-                                    className="group relative px-6 py-2.5 rounded-full bg-white text-black text-sm font-sans font-medium transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] flex items-center gap-2 overflow-hidden"
+                                    href="/Rana_Resume.pdf"
+                                    download="Rana_Resume.pdf"
+                                    className="group relative px-5 py-2.5 rounded-full bg-white text-black text-sm font-sans font-medium transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] flex items-center gap-2 overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
-                                        Download PDF
+                                        PDF
                                         <svg className="w-4 h-4 transition-transform group-hover:translate-y-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                                     </span>
                                     <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                                </a>
+
+                                <a
+                                    href="/resumeword.docx"
+                                    download="Rana_Resume.docx"
+                                    className="group relative px-5 py-2.5 rounded-full bg-white/10 border border-white/20 text-white text-sm font-sans font-medium transition-all duration-300 ease-out hover:scale-105 hover:bg-white/20 flex items-center gap-2 overflow-hidden"
+                                >
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        DOCX
+                                        <svg className="w-4 h-4 transition-transform group-hover:translate-y-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                                    </span>
                                 </a>
 
                                 <button
@@ -83,7 +94,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                             <div className="w-full h-full max-w-[850px] p-4 md:p-8 flex flex-col">
                                 <div className="flex-1 w-full bg-white rounded-md shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden border border-white/5 relative ring-1 ring-white/10">
                                     <iframe
-                                        src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                                        src="/Rana_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
                                         className="w-full h-full block"
                                         title="Resume PDF"
                                     />
