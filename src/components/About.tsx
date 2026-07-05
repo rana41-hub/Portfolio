@@ -56,15 +56,24 @@ const FluidText = ({ text, className = "" }: { text: string; className?: string 
             onMouseLeave={handleMouseLeave}
             className="inline relative z-20 cursor-default"
         >
-            {text.split("").map((char, i) => (
-                <ProximityChar
-                    key={i}
-                    char={char}
-                    mouseX={mouseX}
-                    mouseY={mouseY}
-                    className={className}
-                />
-            ))}
+            {text.split(/(\s+)/).map((part, index) => {
+                if (part.trim() === "") {
+                    return <span key={index}>{part}</span>;
+                }
+                return (
+                    <span key={index} className="inline-block whitespace-nowrap">
+                        {part.split("").map((char, i) => (
+                            <ProximityChar
+                                key={i}
+                                char={char}
+                                mouseX={mouseX}
+                                mouseY={mouseY}
+                                className={className}
+                            />
+                        ))}
+                    </span>
+                );
+            })}
         </span>
     );
 };
