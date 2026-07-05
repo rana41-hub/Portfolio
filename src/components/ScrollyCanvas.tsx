@@ -30,15 +30,30 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
     };
 
     useEffect(() => {
-        if (frameCount <= 0) return;
+        if (frameCount <= 0) {
+            console.warn("[ScrollyCanvas] Frame count is 0 or less, aborting load.");
+            return;
+        }
+
+        console.log("[ScrollyCanvas] Loading initial frame:", getFrameUrl(0));
 
         // 1. Initial Frame
         const firstImg = new Image();
-        firstImg.src = getFrameUrl(0);
+        
         firstImg.onload = () => {
+            console.log("[ScrollyCanvas] Initial frame loaded successfully!");
             imagesRef.current[0] = firstImg;
             setIsLoaded(true);
         };
+        
+        firstImg.onerror = (err) => {
+            console.error("[ScrollyCanvas] Failed to load initial frame:", getFrameUrl(0), err);
+            // Even if the first frame fails, let's unlock the canvas so it isn't stuck forever
+            setIsLoaded(true); 
+        };
+
+        firstImg.src = getFrameUrl(0);
+
         // The background preloader has been removed to free up network bandwidth
         // so that the sliding window can instantly fetch the frames you scroll to!
     }, [frameCount, startFrame, extension, prefix, padLength, supabaseBaseUrl]);
