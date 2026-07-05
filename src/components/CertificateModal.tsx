@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export interface Certificate {
     title: string;
@@ -67,11 +68,13 @@ export default function CertificateModal({ isOpen, onClose, certificate }: Certi
                             <div className="relative w-full md:w-[55%] bg-white/5 flex items-center justify-center overflow-hidden min-h-[300px] md:min-h-full border-b md:border-b-0 md:border-r border-white/10">
                                 {certificate.image ? (
                                     <div className="relative w-full h-full p-8 md:p-12 flex items-center justify-center">
-                                        <div className="relative shadow-2xl shadow-black/30 rounded-lg overflow-hidden transform hover:scale-[1.02] transition-transform duration-500">
-                                            <img
+                                        <div className="relative w-full h-full shadow-2xl shadow-black/30 rounded-lg overflow-hidden transform hover:scale-[1.02] transition-transform duration-500">
+                                            <Image
                                                 src={certificate.image}
                                                 alt={certificate.title}
-                                                className="w-full h-auto object-contain max-h-[60vh] md:max-h-[70vh]"
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                                className="object-contain"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                         </div>

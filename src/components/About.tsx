@@ -3,7 +3,7 @@
 import { motion, useMotionValue, useTransform, useSpring, MotionValue } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import CertificateModal, { Certificate } from "./CertificateModal";
-
+import Image from "next/image";
 
 const ProximityChar = ({ char, mouseX, mouseY, className }: { char: string, mouseX: MotionValue<number>, mouseY: MotionValue<number>, className: string }) => {
     const ref = useRef<HTMLSpanElement>(null);
@@ -199,6 +199,15 @@ const skills = [
 
 export default function About() {
     const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    const scroll = (direction: "left" | "right") => {
+        if (scrollContainerRef.current) {
+            const { current } = scrollContainerRef;
+            const scrollAmount = current.clientWidth * 0.8;
+            current.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" });
+        }
+    };
 
     return (
         <section
@@ -379,17 +388,41 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
-                    className="mb-20 w-full max-w-4xl mx-auto"
+                    className="mb-20 w-full max-w-4xl mx-auto relative group"
                 >
-                    <h4 className="text-sm font-display font-semibold tracking-[-0.03em] text-gray-500 uppercase mb-8 text-center">
-                        Certifications
-                    </h4>
+                    <div className="flex items-center justify-between mb-8">
+                        <h4 className="text-sm font-display font-semibold tracking-[-0.03em] text-gray-500 uppercase flex-1 text-center">
+                            Certifications
+                        </h4>
+                        
+                        {/* Scroll Controls (Desktop only) */}
+                        <div className="hidden md:flex items-center gap-2 absolute right-0 top-0">
+                            <button 
+                                onClick={() => scroll("left")}
+                                className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <button 
+                                onClick={() => scroll("right")}
+                                className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                    </div>
 
-                    <div
-                        className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:-mx-8 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
-                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                    >
-                        {certificatesData.map((cert, index) => (
+                    <div className="relative">
+                        {/* Mobile gradient masks (optional) */}
+                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 md:hidden pointer-events-none" />
+                        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 md:hidden pointer-events-none" />
+
+                        <div
+                            ref={scrollContainerRef}
+                            className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:-mx-8 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth"
+                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        >
+                            {certificatesData.map((cert, index) => (
                             <motion.div
                                 key={cert.id}
                                 layoutId={`cert-${cert.id}`}
@@ -407,10 +440,12 @@ export default function About() {
                                 <div className="relative h-48 w-full overflow-hidden bg-black/20 flex items-center justify-center p-6">
                                     {(cert.art || cert.image) && (
                                         <div className="relative w-full h-full flex items-center justify-center">
-                                            <img
-                                                src={cert.art || cert.image}
+                                            <Image
+                                                src={cert.art || cert.image || ""}
                                                 alt=""
-                                                className="w-auto h-full max-w-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-transform duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.3)]"
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-transform duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.3)]"
                                             />
                                         </div>
                                     )}
@@ -441,6 +476,7 @@ export default function About() {
                                 </div>
                             </motion.div>
                         ))}
+                    </div>
                     </div>
                 </motion.div>
 

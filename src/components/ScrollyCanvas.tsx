@@ -2,52 +2,85 @@
 
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
+import type { SequenceMetadata } from "@/utils/sequence";
 
-export default function ScrollyCanvas({ containerRef }: { containerRef: React.RefObject<HTMLElement | null> }) {
+interface ScrollyCanvasProps {
+    containerRef: React.RefObject<HTMLElement | null>;
+    sequenceMeta: SequenceMetadata;
+}
+
+export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    // Simple array to hold the Image objects
     const imagesRef = useRef<HTMLImageElement[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
     });
 
-    const frameCount = 119;
+    const { startFrame, frameCount, extension, prefix, padLength } = sequenceMeta;
+
+    const getFrameUrl = (index: number) => {
+        const fileNum = (startFrame + index).toString().padStart(padLength, "0");
+        return `/sequence/${prefix}${fileNum}.${extension}`;
+    };
 
     useEffect(() => {
-        const loadImages = async () => {
-            const promises: Promise<void>[] = [];
+        if (frameCount <= 0) return;
 
-            for (let i = 0; i <= frameCount; i++) {
-                const promise = new Promise<void>((resolve) => {
-                    const img = new Image();
-                    const formattedIndex = i.toString().padStart(3, "0");
-                    img.src = `/sequence/frame_${formattedIndex}.webp`;
+        let isCancelled = false;
+        
+        const loadImagesProgressively = async () => {
+            // 1. Load the first frame immediately so we can show it
+            const firstImg = new Image();
+            firstImg.src = getFrameUrl(0);
+            
+            firstImg.onload = () => {
+                if (isCancelled) return;
+                imagesRef.current[0] = firstImg;
+                setIsLoaded(true);
+            };
 
-                    img.onload = async () => {
-                        try {
-                            await img.decode();
-                        } catch (err) {
-                            console.warn("Image decode failed", err);
-                        }
-                        imagesRef.current[i] = img;
-                        resolve();
-                    };
+            // 2. Load the rest of the sequence in batches
+            const loadRemaining = async () => {
+                const BATCH_SIZE = 8;
+                for (let i = 1; i < frameCount; i += BATCH_SIZE) {
+                    if (isCancelled) break;
+                    
+                    const batchPromises: Promise<void>[] = [];
+                    for (let j = i; j < i + BATCH_SIZE && j < frameCount; j++) {
+                        batchPromises.push(
+                            new Promise<void>((resolve) => {
+                                const img = new Image();
+                                img.src = getFrameUrl(j);
+                                
+                                img.onload = () => {
+                                    imagesRef.current[j] = img;
+                                    resolve();
+                                };
+                                img.onerror = () => {
+                                    resolve(); // Resolve anyway to not block the batch
+                                };
+                            })
+                        );
+                    }
+                    await Promise.all(batchPromises);
+                    // Yield to main thread
+                    await new Promise(resolve => setTimeout(resolve, 30));
+                }
+            };
 
-                    img.onerror = (e) => {
-                        console.error("Failed to load image", i, e);
-                        resolve();
-                    };
-                });
-                promises.push(promise);
-            }
-
-            await Promise.all(promises);
-            setIsLoaded(true);
+            loadRemaining();
         };
 
-        loadImages();
-    }, []);
+        loadImagesProgressively();
+
+        return () => {
+            isCancelled = true;
+        };
+    }, [frameCount, startFrame, extension, prefix, padLength]);
 
     const renderFrame = (index: number) => {
         const canvas = canvasRef.current;
@@ -58,26 +91,31 @@ export default function ScrollyCanvas({ containerRef }: { containerRef: React.Re
         const ctx = canvas.getContext("2d", { alpha: false });
         if (!ctx) return;
 
-        if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        const pixelRatio = window.devicePixelRatio || 1;
+        const targetWidth = window.innerWidth * pixelRatio;
+        const targetHeight = window.innerHeight * pixelRatio;
+
+        if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
         }
 
         const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
         const x = (canvas.width / 2) - (img.width / 2) * scale;
         const y = (canvas.height / 2) - (img.height / 2) * scale;
 
+        // Draw image directly. The browser will handle synchronous decoding and memory management.
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
     };
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        if (!isLoaded || imagesRef.current.length === 0) return;
+        if (!isLoaded || frameCount <= 0) return;
 
         const frameIndex = Math.min(
             frameCount - 1,
             Math.floor(latest * frameCount)
         );
-
+        
         requestAnimationFrame(() => renderFrame(frameIndex));
     });
 
@@ -90,10 +128,7 @@ export default function ScrollyCanvas({ containerRef }: { containerRef: React.Re
     return (
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#121212]">
             <canvas ref={canvasRef} className="block w-full h-full" />
-            {!isLoaded && <div className="absolute inset-0 flex items-center justify-center text-white/20">Loading...</div>}
+            {!isLoaded && <div className="absolute inset-0 flex items-center justify-center text-white/20">Loading Canvas...</div>}
         </div>
     );
 }
-
-
-

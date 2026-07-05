@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import CaseStudyModal, { ProjectData } from "./CaseStudyModal";
-
+import Image from "next/image";
 const projects: ProjectData[] = [
     {
         title: "Ecosync Nexus",
@@ -152,13 +152,16 @@ export default function Projects() {
 
                                 <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A] z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
 
-                                <div className="absolute inset-0 z-0">
-                                    <div
-                                        className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-                                        style={{ backgroundImage: `url(${project.images?.[0] || ""})` }}
-                                    />
-                                    <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20" />
-                                </div>
+                                    <div className="absolute inset-0 z-0">
+                                        <Image
+                                            src={project.images?.[0] || ""}
+                                            alt={project.title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20" />
+                                    </div>
 
                                 <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10">
                                     <div className="transform transition-transform duration-500 group-hover:-translate-y-2">

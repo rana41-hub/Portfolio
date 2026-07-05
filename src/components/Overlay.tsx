@@ -13,7 +13,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
         offset: ["start start", "end end"]
     });
 
-    const y1 = useTransform(scrollYProgress, [0, 0.2], [0, -100]);
+    const y1 = useTransform(scrollYProgress, [0, 0.2], [0, -400]);
     const opacity1 = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
     const y2 = useTransform(scrollYProgress, [0.15, 0.3, 0.45], [100, 0, -100]);
