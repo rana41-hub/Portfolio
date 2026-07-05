@@ -295,7 +295,7 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    className="text-3xl md:text-5xl font-display font-bold text-white leading-[1.05] tracking-[-0.03em] mb-8"
+                    className="text-2xl sm:text-3xl md:text-5xl font-display font-bold text-white leading-[1.05] tracking-[-0.03em] mb-8"
                 >
                     <FluidText text="Bridging the gap between" />
                     {" "}
@@ -319,7 +319,7 @@ export default function About() {
                     whileHover={{ opacity: 1, y: -2, transition: { duration: 0.3 } }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                    className="text-lg md:text-xl font-sans font-normal text-gray-400 leading-[1.6] tracking-[-0.01em] max-w-2xl mx-auto mb-16 cursor-default transition-colors duration-300 hover:text-gray-300"
+                    className="text-base sm:text-lg md:text-xl font-sans font-normal text-gray-400 leading-[1.6] tracking-[-0.01em] max-w-2xl mx-auto mb-16 cursor-default transition-colors duration-300 hover:text-gray-300"
                 >
                     I am a full-stack developer who builds immersive digital experiences from end to end.
                     My work lives at the intersection of thoughtful design and solid engineering — where performance, scalability, and clean architecture matter just as much as aesthetics.
@@ -419,7 +419,7 @@ export default function About() {
 
                         <div
                             ref={scrollContainerRef}
-                            className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:-mx-8 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth"
+                            className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:-mx-8 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth touch-pan-x"
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
                             {certificatesData.map((cert, index) => (

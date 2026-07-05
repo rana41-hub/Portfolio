@@ -53,10 +53,10 @@ export default function Navbar() {
                     filter: hidden ? "blur(10px)" : "blur(0px)"
                 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${hidden ? "-translate-y-[150%] opacity-0" : "translate-y-0 opacity-100"
+                className={`fixed top-5 left-5 md:top-6 md:left-1/2 translate-x-0 md:-translate-x-1/2 z-50 transition-all duration-300 ${hidden ? "-translate-y-[150%] opacity-0" : "translate-y-0 opacity-100"
                     }`}
             >
-                <div className={`flex items-center justify-center gap-10 px-8 py-3 rounded-full transition-all duration-500 border shadow-lg ${isPastHero
+                <div className={`flex items-center justify-center gap-10 px-5 py-2.5 md:px-8 md:py-3 rounded-full transition-all duration-500 border shadow-lg ${isPastHero
                     ? "bg-black/80 border-white/20 shadow-black/30 backdrop-blur-xl"
                     : "bg-black/20 border-white/10 shadow-black/10 backdrop-blur-xl"
                     }`}>

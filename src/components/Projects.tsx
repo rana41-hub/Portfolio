@@ -131,7 +131,7 @@ export default function Projects() {
             <div className="relative z-10 max-w-7xl mx-auto">
                 <div className="mb-20">
                     <h3 className="text-sm font-mono uppercase tracking-wider text-gray-400 mb-4">Selected Works</h3>
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
                         Engineering <span className="text-white/40">meet</span> Creativity
                     </h2>
                 </div>
@@ -148,7 +148,7 @@ export default function Projects() {
                             onClick={() => handleOpenModal(project)}
                             className="group relative cursor-pointer"
                         >
-                            <div className="relative h-[450px] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/5 transition-colors duration-500 group-hover:border-white/10 group-hover:bg-[#0F0F0F]">
+                            <div className="relative h-[380px] md:h-[450px] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/5 transition-colors duration-500 group-hover:border-white/10 group-hover:bg-[#0F0F0F]">
 
                                 <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A] z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
 
@@ -174,7 +174,7 @@ export default function Projects() {
                                             </span>
                                         </div>
 
-                                        <h3 className="text-3xl font-display font-bold text-white mb-3 group-hover:text-white transition-colors duration-300">
+                                        <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3 group-hover:text-white transition-colors duration-300">
                                             {project.title}
                                         </h3>
 

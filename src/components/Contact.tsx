@@ -119,7 +119,7 @@ export default function Contact() {
                         href="https://mail.google.com/mail/?view=cm&fs=1&to=raghuvanshiranapratapsingh@gmail.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-3xl md:text-5xl font-sans font-light text-white opacity-80 hover:opacity-100 transition-all duration-500 hover:text-white/90 relative group inline-block tracking-tight"
+                        className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-sans font-light text-white opacity-80 hover:opacity-100 transition-all duration-500 hover:text-white/90 relative group inline-block tracking-tight break-all md:break-normal px-4"
                     >
                         raghuvanshiranapratapsingh@gmail.com
                         <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 ease-out group-hover:w-full opacity-50" />

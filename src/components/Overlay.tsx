@@ -33,7 +33,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
-                    className="text-6xl md:text-8xl font-display font-bold tracking-[-0.01em] leading-[1.05] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/90 pb-4"
+                    className="text-5xl md:text-6xl lg:text-8xl font-display font-bold tracking-[-0.01em] leading-[1.05] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/90 pb-4"
                     style={{ textShadow: "0 4px 24px rgba(0,0,0,0.1)" }}
                 >
                     Rana Pratap Singh.
@@ -43,7 +43,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-                    className="text-lg md:text-xl font-sans font-medium text-white/70 mt-2 max-w-lg tracking-wide"
+                    className="text-base md:text-lg lg:text-xl font-sans font-medium text-white/70 mt-2 max-w-lg tracking-wide"
                 >
                     Full-stack developer crafting thoughtful digital experiences.
                 </motion.p>
@@ -69,7 +69,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 style={{ y: y2, opacity: opacity2 }}
                 className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-10 md:px-20"
             >
-                <h2 className="text-5xl md:text-7xl font-display font-semibold text-white max-w-2xl tracking-[-0.03em] leading-[1.05]">
+                <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-semibold text-white max-w-2xl tracking-[-0.03em] leading-[1.05]">
                     I build digital experiences.
                 </h2>
             </motion.div>
@@ -78,7 +78,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                 style={{ y: y3, opacity: opacity3 }}
                 className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-10 md:px-20 flex justify-end"
             >
-                <h2 className="text-5xl md:text-7xl font-display font-semibold text-white max-w-2xl text-right tracking-[-0.03em] leading-[1.05]">
+                <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-semibold text-white max-w-2xl text-right tracking-[-0.03em] leading-[1.05]">
                     Engineering Excellence and scalability.
                 </h2>
             </motion.div>
