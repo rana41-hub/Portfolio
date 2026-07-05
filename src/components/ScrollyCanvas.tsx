@@ -68,12 +68,15 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
         // 1. RAM Cleanup: Unload frames outside the window
         for (let i = 0; i < imagesRef.current.length; i++) {
             if (imagesRef.current[i] && (i < currentIndex - WINDOW_BACK || i > currentIndex + WINDOW_FORWARD)) {
+                // Safely clear src without triggering errors by just setting to a tiny data uri or nullifying
+                imagesRef.current[i].onload = null;
+                imagesRef.current[i].onerror = null;
                 imagesRef.current[i].src = "";
                 delete imagesRef.current[i];
             }
         }
 
-        // 2. RAM Decode: Load frames inside the window from Disk Cache into RAM
+        // 2. Network Fetching: Preload upcoming frames in the window
         const framesToLoad = [currentIndex];
         for (let offset = 1; offset <= WINDOW_FORWARD; offset++) {
             if (currentIndex + offset < frameCount) framesToLoad.push(currentIndex + offset);
@@ -82,11 +85,16 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
 
         framesToLoad.forEach(index => {
             if (!imagesRef.current[index]) {
+                console.log(`[ScrollyCanvas] Fetching frame ${index}`);
                 const img = new Image();
                 imagesRef.current[index] = img; 
                 img.onload = () => {
+                    console.log(`[ScrollyCanvas] Frame ${index} loaded! Triggering render.`);
                     requestAnimationFrame(() => renderFrame(targetIndexRef.current));
                 };
+                img.onerror = (e) => {
+                    console.error(`[ScrollyCanvas] Frame ${index} failed to load!`, e);
+                }
                 img.src = getFrameUrl(index);
             }
         });
@@ -115,7 +123,10 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
         }
 
         const img = imagesRef.current[bestIndex];
-        if (!isImageLoaded(img)) return;
+        if (!isImageLoaded(img)) {
+            console.log(`[ScrollyCanvas] Target ${targetIndex}: No loaded frame found in sliding window.`);
+            return;
+        }
 
         const pixelRatio = window.devicePixelRatio || 1;
         const targetWidth = window.innerWidth * pixelRatio;
@@ -129,8 +140,6 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
         const ctx = canvas.getContext("2d", { alpha: false });
         if (!ctx) return;
 
-
-
         if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
             canvas.width = targetWidth;
             canvas.height = targetHeight;
@@ -143,6 +152,7 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
         // Draw image directly. The browser will handle synchronous decoding and memory management.
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
         
+        console.log(`[ScrollyCanvas] Successfully rendered frame ${bestIndex}`);
         // Mark this frame as rendered so we don't redraw it pointlessly
         lastRenderedIndexRef.current = bestIndex;
     };
