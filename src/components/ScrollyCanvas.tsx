@@ -14,7 +14,8 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
     const imagesRef = useRef<HTMLImageElement[]>([]);
     const targetIndexRef = useRef<number>(0);
     const lastRenderedIndexRef = useRef<number>(-1);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [showLoader, setShowLoader] = useState(true);
+    const isLoadedRef = useRef(false);
     
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -43,13 +44,15 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
         firstImg.onload = () => {
             console.log("[ScrollyCanvas] Initial frame loaded successfully!");
             imagesRef.current[0] = firstImg;
-            setIsLoaded(true);
+            isLoadedRef.current = true;
+            setShowLoader(false);
         };
         
         firstImg.onerror = (err) => {
             console.error("[ScrollyCanvas] Failed to load initial frame:", getFrameUrl(0), err);
             // Even if the first frame fails, let's unlock the canvas so it isn't stuck forever
-            setIsLoaded(true); 
+            isLoadedRef.current = true;
+            setShowLoader(false);
         };
 
         firstImg.src = getFrameUrl(0);
@@ -145,7 +148,7 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
     };
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        if (!isLoaded || frameCount <= 0) return;
+        if (!isLoadedRef.current || frameCount <= 0) return;
 
         const frameIndex = Math.min(
             frameCount - 1,
@@ -161,15 +164,15 @@ export default function ScrollyCanvas({ containerRef, sequenceMeta }: ScrollyCan
     });
 
     useEffect(() => {
-        if (isLoaded) {
+        if (!showLoader) {
             renderFrame(0);
         }
-    }, [isLoaded]);
+    }, [showLoader]);
 
     return (
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#121212]">
             <canvas ref={canvasRef} className="block w-full h-full" />
-            {!isLoaded && <div className="absolute inset-0 flex items-center justify-center text-white/20">Loading Canvas...</div>}
+            {showLoader && <div className="absolute inset-0 flex items-center justify-center text-white/20">Loading Canvas...</div>}
         </div>
     );
 }
