@@ -54,7 +54,7 @@ const FluidText = ({ text, className = "" }: { text: string; className?: string 
         <span
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="inline-flex flex-wrap justify-center whitespace-pre relative z-20 cursor-default"
+            className="inline relative z-20 cursor-default"
         >
             {text.split("").map((char, i) => (
                 <ProximityChar
@@ -419,7 +419,7 @@ export default function About() {
 
                         <div
                             ref={scrollContainerRef}
-                            className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:-mx-8 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth touch-pan-x"
+                            className="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 md:-mx-12 md:px-12 snap-x snap-mandatory scroll-px-6 md:scroll-px-12 [&::-webkit-scrollbar]:hidden scroll-smooth touch-pan-x"
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
                             {certificatesData.map((cert, index) => (
