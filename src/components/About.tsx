@@ -84,7 +84,7 @@ const educationData = [
         details: [
             {
                 degree: "Bachelor of Technology [CS & AI]",
-                score: "Will tell you after B-tech ends...",
+                score: "Will tell the score after B-tech ends...",
                 duration: "2024 — 2028"
             }
         ]
