@@ -13,7 +13,7 @@ const projects: ProjectData[] = [
         images: ["https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"],
         liveUrl: "https://sustainovation-2025.vercel.app/",
         problem: "Users needed a real-time way to track and reduce energy consumption across multiple appliances in homes and workplace, but existing solutions were fragmented and lacked actionable insights.",
-        solution: "We built a centralized dashboard integrating IoT data with AI-driven analytics to predict usage patterns and suggest reduction strategies.",
+        solution: "Built a centralized dashboard that visualizes IoT-based energy consumption data and surfaces AI-generated insights and reduction suggestions.",
         outcome: "The platform empowered users to reduce energy waste by up to 20% within the first month of beta testing.",
         role: "Frontend Developer and UI/UX Designer",
         techStack: ["React", "TypeScript", "Tailwind CSS", "AI/ML Integration"],
@@ -29,13 +29,13 @@ const projects: ProjectData[] = [
         problem: "Emergency response times and proactive health monitoring were insufficient in remote areas, leading to delayed medical interventions.",
         solution: "Developed a location-aware health guardian system that correlates vital signs with geo-data to alert emergency situations and outbreak alerts automatically.",
         outcome: "Improved emergency response coordination simulations by 30% and provided peace of mind to at-risk individuals.",
-        role: "Frontend Engineer",
-        techStack: ["React", "Geolocation API", "Node.js", "WebSockets"],
+        role: "Frontend Developer",
+        techStack: ["React", "Geolocation API"],
         deliverables: "Responsive PWA, Real-time Alert System"
     },
     {
         title: "Echo Earth",
-        category: "Creative Web App",
+        category: "Web Application",
         year: "2024",
         description: "AI-powered platform that uses real-time climate data, voice synthesis, and storytelling to personify the Earth.",
         images: ["https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop"],
@@ -43,7 +43,7 @@ const projects: ProjectData[] = [
         problem: "Climate change data often feels abstract and disconnected from human emotion, making it hard to inspire action.",
         solution: "Created an immersive 'voice of the Earth' that translates climate datasets into spoken narratives and evolving visual soundscapes.",
         outcome: "Increased user engagement with climate metrics and helped raise awareness about climate change .",
-        role: "Full Stack Developer",
+        role: "Frontend Developer",
         techStack: ["React", "ElevenLabs Voice API", "Framer Motion"],
         deliverables: "Interactive Experience, Voice Synthesis Engine"
     },
@@ -152,16 +152,16 @@ export default function Projects() {
 
                                 <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A] z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
 
-                                    <div className="absolute inset-0 z-0">
-                                        <Image
-                                            src={project.images?.[0] || ""}
-                                            alt={project.title}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, 50vw"
-                                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                                        />
-                                        <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20" />
-                                    </div>
+                                <div className="absolute inset-0 z-0">
+                                    <Image
+                                        src={project.images?.[0] || ""}
+                                        alt={project.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20" />
+                                </div>
 
                                 <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10">
                                     <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
