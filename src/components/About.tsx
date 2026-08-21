@@ -330,7 +330,7 @@ export default function About() {
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                     className="text-base sm:text-lg md:text-xl font-sans font-normal text-gray-400 leading-[1.6] tracking-[-0.01em] max-w-2xl mx-auto mb-16 cursor-default transition-colors duration-300 hover:text-gray-300"
                 >
-                    I am a full-stack developer who builds immersive digital experiences from end to end.
+                    I am an aspiring full-stack developer who builds immersive digital experiences from end to end.
                     My work lives at the intersection of thoughtful design and solid engineering — where performance, scalability, and clean architecture matter just as much as aesthetics.
                     Every interaction is crafted to feel intentional, responsive, and meaningful.
                 </motion.p>
