@@ -56,8 +56,8 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
 
                             <div className="flex items-center gap-4">
                                 <a
-                                    href="/Rana_Resume.pdf"
-                                    download="Rana_Resume.pdf"
+                                    href="/Rana_Pratap_Singh_Resume.pdf"
+                                    download="Rana_Pratap_Singh_Resume.pdf"
                                     className="group relative px-5 py-2.5 rounded-full bg-white text-black text-sm font-sans font-medium transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] flex items-center gap-2 overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
@@ -68,8 +68,8 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                                 </a>
 
                                 <a
-                                    href="/resumeword.docx"
-                                    download="Rana_Resume.docx"
+                                    href="/Rana_Pratap_Singh_Resume.docx"
+                                    download="Rana_Pratap_Singh_Resume.docx"
                                     className="group relative px-5 py-2.5 rounded-full bg-white/10 border border-white/20 text-white text-sm font-sans font-medium transition-all duration-300 ease-out hover:scale-105 hover:bg-white/20 flex items-center gap-2 overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
@@ -94,7 +94,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                             <div className="w-full h-full max-w-[850px] p-4 md:p-8 flex flex-col">
                                 <div className="flex-1 w-full bg-white rounded-md shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden border border-white/5 relative ring-1 ring-white/10">
                                     <iframe
-                                        src="/Rana_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                                        src="/Rana_Pratap_Singh_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
                                         className="w-full h-full block"
                                         title="Resume PDF"
                                     />

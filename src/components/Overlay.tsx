@@ -45,7 +45,7 @@ export default function Overlay({ containerRef }: OverlayProps) {
                     transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
                     className="text-base md:text-lg lg:text-xl font-sans font-medium text-white/70 mt-2 max-w-lg tracking-wide"
                 >
-                    Full-stack developer crafting thoughtful digital experiences.
+                    Aspiring Full-stack developer crafting thoughtful digital experiences.
                 </motion.p>
 
                 <motion.div

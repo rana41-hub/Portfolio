@@ -1,16 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import ScrollyCanvas from "@/components/ScrollyCanvas";
+import ScrollyVideo from "@/components/ScrollyVideo";
 import Overlay from "@/components/Overlay";
 import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
-import type { SequenceMetadata } from "@/utils/sequence";
 
-export default function HomeClient({ sequenceMeta }: { sequenceMeta: SequenceMetadata }) {
+export default function HomeClient() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -19,7 +18,7 @@ export default function HomeClient({ sequenceMeta }: { sequenceMeta: SequenceMet
 
       <div id="home" ref={containerRef} className="relative h-[500vh]">
         <div className="sticky top-0 h-[96vh] w-full overflow-hidden">
-          <ScrollyCanvas containerRef={containerRef} sequenceMeta={sequenceMeta} />
+          <ScrollyVideo containerRef={containerRef} videoSrc="/optimized-hero.mp4" />
           <Overlay containerRef={containerRef} />
         </div>
       </div>

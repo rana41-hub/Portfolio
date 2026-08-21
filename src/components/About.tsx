@@ -84,7 +84,7 @@ const educationData = [
         details: [
             {
                 degree: "Bachelor of Technology [CS & AI]",
-                score: "9.35 GPA",
+                score: "Will tell you after B-tech ends...",
                 duration: "2024 — 2028"
             }
         ]
@@ -403,26 +403,26 @@ export default function About() {
                         <h4 className="text-sm font-display font-semibold tracking-[-0.03em] text-gray-500 uppercase flex-1 text-center">
                             Certifications
                         </h4>
-                        
-                        {/* Scroll Controls (Desktop only) */}
+
+
                         <div className="hidden md:flex items-center gap-2 absolute right-0 top-0">
-                            <button 
+                            <button
                                 onClick={() => scroll("left")}
                                 className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-colors"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
                             </button>
-                            <button 
+                            <button
                                 onClick={() => scroll("right")}
                                 className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-colors"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
                             </button>
                         </div>
                     </div>
 
                     <div className="relative">
-                        {/* Mobile gradient masks (optional) */}
+
                         <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 md:hidden pointer-events-none" />
                         <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 md:hidden pointer-events-none" />
 
@@ -432,60 +432,60 @@ export default function About() {
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
                             {certificatesData.map((cert, index) => (
-                            <motion.div
-                                key={cert.id}
-                                layoutId={`cert-${cert.id}`}
-                                onClick={() => setSelectedCertificate(cert)}
-                                whileHover={{
-                                    y: -5,
-                                    borderColor: "rgba(255, 255, 255, 0.2)",
-                                    backgroundColor: "rgba(255, 255, 255, 0.08)"
-                                }}
-                                transition={{ duration: 0.3 }}
-                                className="group cursor-pointer relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-colors overflow-hidden min-w-[280px] w-[280px] snap-center flex-shrink-0 flex flex-col"
-                            >
-                                <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <motion.div
+                                    key={cert.id}
+                                    layoutId={`cert-${cert.id}`}
+                                    onClick={() => setSelectedCertificate(cert)}
+                                    whileHover={{
+                                        y: -5,
+                                        borderColor: "rgba(255, 255, 255, 0.2)",
+                                        backgroundColor: "rgba(255, 255, 255, 0.08)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className="group cursor-pointer relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-colors overflow-hidden min-w-[280px] w-[280px] snap-center flex-shrink-0 flex flex-col"
+                                >
+                                    <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                <div className="relative h-48 w-full overflow-hidden bg-black/20 flex items-center justify-center p-6">
-                                    {(cert.art || cert.image) && (
-                                        <div className="relative w-full h-full flex items-center justify-center">
-                                            <Image
-                                                src={cert.art || cert.image || ""}
-                                                alt=""
-                                                fill
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-transform duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.3)]"
-                                            />
-                                        </div>
-                                    )}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-90" />
-                                </div>
-
-                                <div className="flex flex-col flex-grow justify-between p-6 pt-2">
-                                    <div className="mb-8">
-                                        <h5 className="text-white font-bold text-lg mb-2 leading-tight group-hover:text-amber-200 transition-colors">
-                                            {cert.title}
-                                        </h5>
-                                        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-gray-500">
-                                            <span className="text-gray-400">{cert.issuer}</span>
-                                            <span className="w-1 h-1 rounded-full bg-gray-600" />
-                                            <span>{cert.year}</span>
-                                        </div>
+                                    <div className="relative h-48 w-full overflow-hidden bg-black/20 flex items-center justify-center p-6">
+                                        {(cert.art || cert.image) && (
+                                            <div className="relative w-full h-full flex items-center justify-center">
+                                                <Image
+                                                    src={cert.art || cert.image || ""}
+                                                    alt=""
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-transform duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.3)]"
+                                                />
+                                            </div>
+                                        )}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-90" />
                                     </div>
 
-                                    <div className="flex items-center justify-between mt-auto">
-                                        <div className="h-8 w-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 text-white/50">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                <path d="M15 3h6v6"></path>
-                                                <path d="M10 14 21 3"></path>
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                            </svg>
+                                    <div className="flex flex-col flex-grow justify-between p-6 pt-2">
+                                        <div className="mb-8">
+                                            <h5 className="text-white font-bold text-lg mb-2 leading-tight group-hover:text-amber-200 transition-colors">
+                                                {cert.title}
+                                            </h5>
+                                            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-gray-500">
+                                                <span className="text-gray-400">{cert.issuer}</span>
+                                                <span className="w-1 h-1 rounded-full bg-gray-600" />
+                                                <span>{cert.year}</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-center justify-between mt-auto">
+                                            <div className="h-8 w-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 text-white/50">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M15 3h6v6"></path>
+                                                    <path d="M10 14 21 3"></path>
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </motion.div>
 

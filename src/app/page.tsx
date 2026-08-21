@@ -1,7 +1,8 @@
 import HomeClient from "@/components/HomeClient";
-import { getSequenceMetadata } from "@/utils/sequence";
+import { preload } from "react-dom";
 
-export default async function Home() {
-  const metadata = await getSequenceMetadata();
-  return <HomeClient sequenceMeta={metadata} />;
+export default function Home() {
+  preload("/optimized-hero.mp4", { as: "video", fetchPriority: "high" });
+
+  return <HomeClient />;
 }
